@@ -11,7 +11,7 @@ pygmentsstyle = "bw"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-disqusShortname = "yourdiscussshortname"
+disqusShortname = "actinglikecrazy"
 
 [params]
     author = "Alex Simkin"
@@ -19,8 +19,6 @@ disqusShortname = "yourdiscussshortname"
     description = "Alex Simkin's personal website"
     keywords = "blog,developer,personal"
     avatarurl = "images/avatar.jpg"
-
-    footercontent = "Enter a text here."
 
     hidecredits = false
     hidecopyright = false
@@ -67,7 +65,3 @@ disqusShortname = "yourdiscussshortname"
     name = "Blog"
     weight = 1
     url  = "/posts/"
-[[menu.main]]
-    name = "About"
-    weight = 2
-    url = "/about/"
