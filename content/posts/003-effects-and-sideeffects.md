@@ -13,14 +13,16 @@ def min(a: Long, b: Long): Long = if (a < b) a else b
 def reverse(s: String): String = s.foldLeft("") { (acc, ch) => ch + acc }
 ```
 
-And what's are effectful functions then? We can call any function in the form of `A => F[B]` where `F` is a container that encodes the possibility of the function to perform some sort of an effectful action (i.e. return abnormally by throwing an exception, produce some output, etc). Keep in mind that having an effect as a return type doesn't give us the right to break referential transparency (for example effects like `Future` and `Try` are by design not referentially transparent therefore can't be used to encode pure effects). Some examples of standard effects and effectful functions are:
+And what's are effectful functions then? We can call any function in the form of `A => F[B]` where `F` is a container that encodes the possibility of the function to perform some sort of an effectful action (i.e. return abnormally by throwing an exception, produce some output, etc). Keep in mind that having an effect as a return type doesn't give us the right to break referential transparency (for example `scala.concurrent.Future` look like a suitable type, it's by design not referentially transparent therefore can't be used to represent pure FP effects). Some examples of standard effects and effectful functions are:
 
 ```scala
 def div(a: Int, b: Int): Option[Int] = b match {
   case 0 => None
   case _ => Some(a / b)
 }
-def toInt(s: String): Either[String, Int] = try {  // <- in this case F[B] is Either[String, B]
+//          F[B] is Either[String, B]
+//                    \/
+def toInt(s: String): Either[String, Int] = try {  
     Right(s.toInt) 
   } catch { 
     case _: NumberFormatException => Left("NaN") 
