@@ -30,7 +30,7 @@ trait Fancy[F[_]] {
 
 object Fancy {
   // infix syntax definition in companion object
-  implicit class FancyOp[F[_], A, B](fab: A => F[B]) extends AnyVal { 
+  implicit class FancyOp[F[_], A, B](private val fab: A => F[B]) extends AnyVal { 
     // here we require that our F[_] should have an implicit instance of Fancy
     //                                \/
     def >=>[C](fbc: B => F[C])(implicit F: Fancy[F]): A => F[C] = 

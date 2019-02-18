@@ -64,12 +64,8 @@ disqusShortname = "actinglikecrazy"
 [[menu.main]]
     name = "Blog"
     weight = 1
-    url  = "/posts/"
+    url = "/posts/"
 [[menu.main]]
-    name = "Categories"
+    name = "RSS"
     weight = 2
-    url  = "/categories/"
-[[menu.main]]
-    name = "Tags"
-    weight = 3
-    url  = "/tags/"
+    url = "/index.xml"
