@@ -18,7 +18,7 @@ trait Category[F[_, _]] {
 object Category extends CategoryInstances0 with CategoryInstances1
 ```
 
-Given this definition of a category, we can implement a few the most frequently used examples of categories. These are the category of functions and the category of type hierarchies.
+Given this definition of a category, we can implement a few the most frequently used examples of categories:
 
 ```scala
 trait CategoryInstances0 {
@@ -38,7 +38,7 @@ trait CategoryInstances0 {
 }
 ```
 
-Now, let's try to define the Kleisli category in a generic way. To do this we'll need one extra helper trait with some standard scala plumbing to make it into a nice syntax.
+A category with a single object is called monoid. Now, let's try to define the Kleisli category in a generic way. To do this we'll need one extra helper trait with some standard scala plumbing to make it into a nice syntax.
 
 ```scala
 trait Shmancy[F[_]] {
