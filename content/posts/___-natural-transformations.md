@@ -1,20 +1,20 @@
 +++
-title = "Mapping between categories"
-date = "2019-03-01"
+title = "Natural transformation"
+date = "2019-03-09"
+draft = true
 tags = ["fp"] 
 categories = ["fp"]
 +++
 
-So, once we defined a category and played with them a little bit we start wondering if categories can themselves be mapped somehow. And some of them actually can. Today we're going to talk about functors which is a mapping between two categories: `Category[A] => Category[B]`. In order to map one category to another, we need to map all the objects and arrows of the original category. Using the model of category from the previous post we can define a functor like so:
+Now, we finally reached the maximum level of abstraction we would need to build something useful. From functor definition we know that it maps a category to another category. And endo-functors can map one category to itself. If these mappings are associative we can build the functor category.
 
 ```scala
-trait Functor[F[_]] {
-  type FromCat[A, B]
-  type ToCat[A, B]
-
-  def map[A, B](f: FromCat[A, B])
-               (implicit FromCat: Category[FromCat], 
-                         ToCat: Category[ToCat]): ToCat[F[A], F[B]]
+trait CategoryInstances2 {
+  implicit def functorCategory[F[_]: Functor, G[_]: Functor]: Category[({ type T[A, B] = Function1[F[A], G[B]] })#T] = 
+    new Category[({ type T[A, B] = Function1[F[A], G[B]] })#T] {
+      def id[A]: F[A] -> G[A]
+      def compose[A, B, C](f: F[A] -> G[B], g: F[B] -> G[C]): F[A] -> G[C]
+    }
 }
 ```
 
@@ -57,6 +57,6 @@ And the definition on a monad we came up with in the last blog post is sufficien
 trait Monad[F[_]] extends Functor[F] {
   def pure[A](a: A): F[A]
   def >>=[A, B](fa: F[A])(f: A => F[B]): F[B]
-  override def map[A, B](f: A => B): F[A] => F[B] = { fa => >>=(fa)(f andThen pure) }
+  override def map[A, B](f: A => B): F[A] => F[B] = { fa => fa >>= (f andThen pure) }
 }
 ```
