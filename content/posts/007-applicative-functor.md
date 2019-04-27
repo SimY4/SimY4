@@ -14,7 +14,7 @@ def doSomeWork[F[_]]: F[String] = ??? // <- unit or work
 
 def composeTwoWithFunctor[F[_]: Functor]: F[(String, String)] = 
   doSomeWork[F] map { r1 => doSomeWork[F] map { r2 => (r1, r2) } }
-  //                                /\
+  //                                      /\
   // Not gonna work. this map will produce the value of type F[C] which is not 
   // the expected type of the outer map function.
 
@@ -22,7 +22,7 @@ def composeTwoWithMonad[F[_]: Monad]: F[(String, String)] =
   doSomeWork[F] >>= { r1 => doSomeWork[F] >>= { r2 => (r1, r2).pure[F] } }
   //                  /\
   // This would work and type signatures would match but because of the stucture of 
-  // our bind function (>>=) we can only make this work sequantially.
+  // our bind function (>>=) we can only make it work sequentially.
 ```
 
 In the example above we can see that monads and functors are naturally sequential. In order to produce the value of type `F[B]` we need to know the value of `A` to feed it into the function `A => F[B]`. And in order for us to know the value of `A` we need to wait on the first effect to complete. So, monads can't model parallelism. That feels like our abstractions missing something very crusial to start using them for any CS problem. We would want something with the signature that would allow us to compose two effects without waiting on previous value. Something like `zip[F[_], A, B](fa: F[A], fb: F[B]): F[(A, B)]` but for an arbitrary number of effects. And in fact, there’s one abstraction that we didn’t talk about yet but that can address this exact problem and it’s called an applicative functor. An applicative functor is defined like this:
@@ -67,8 +67,8 @@ We now have three the most widely used combinators of pure functional programmin
 
 ```scala
 map(f: A => B)   : F[A] => F[B] // <- functor.             Transforms values inside an effect
-ap (f: F[A => B]): F[A] => F[B] // <- applicative functor. Composes two effects together
->>=(f: A => F[B]): F[A] => F[B] // <- monad.               Transforms effect into a new effect
+ap (f: F[A => B]): F[A] => F[B] // <- applicative functor. Composes effects together
+>>=(f: A => F[B]): F[A] => F[B] // <- monad.               Produces an effect based on previous effect
 ```
 
 And of course since applicative is a functor we can again include it in our monad definition:
@@ -77,7 +77,7 @@ And of course since applicative is a functor we can again include it in our mona
 trait Monad[F[_]] extends ApplicativeFunctor[F] {
   def pure[A](a: A): F[A]
   def >>=[A, B](f: A => F[B]): F[A] => F[B]
-  override def ap[A, B](ff: F[A => B]): F[A] => F[B] = { fa => >>=({ (f: A => B) => map(f)(fa) })(ff) }
+  override def ap[A, B](ff: F[A => B]): F[A] => F[B] = { fa => >>=((f: A => B) => map(f)(fa))(ff) }
   override def map[A, B](f: A => B): F[A] => F[B] = >>=(f andThen pure)
 }
 ```
