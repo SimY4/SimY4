@@ -25,7 +25,7 @@ def composeTwoWithMonad[F[_]: Monad]: F[(String, String)] =
   // our bind function (>>=) we can only make this work sequantially.
 ```
 
-In the example above we can see that monads and functors are naturally sequential. In order to produce the value of type `F[B]` we need to know the value of `A` to feed it into the function `A => F[B]`. And in order for us to know the value of `A` we need to wait on the first effect to complete. So, monads can't model parallelism. That feels like our abstractions missing something very crusial to start using them for any CS problem. We would want something with the signature that would allow us to compose two effects without waiting on previous value. Something like `zip[F[_], A, B](fa: F[A], fb: F[B]): F[(A, B)]` but for an arbitrary number of effects. And in fact, there’s one abstraction that we didn’t talk about but yet that that can address this exact problem and it’s called an applicative functor. An applicative functor is defined like this:
+In the example above we can see that monads and functors are naturally sequential. In order to produce the value of type `F[B]` we need to know the value of `A` to feed it into the function `A => F[B]`. And in order for us to know the value of `A` we need to wait on the first effect to complete. So, monads can't model parallelism. That feels like our abstractions missing something very crusial to start using them for any CS problem. We would want something with the signature that would allow us to compose two effects without waiting on previous value. Something like `zip[F[_], A, B](fa: F[A], fb: F[B]): F[(A, B)]` but for an arbitrary number of effects. And in fact, there’s one abstraction that we didn’t talk about yet but that can address this exact problem and it’s called an applicative functor. An applicative functor is defined like this:
 
 ```scala
 trait ApplicativeFunctor[F[_]] extends Functor[F] {
@@ -66,9 +66,9 @@ def composeTwoWithApplictive[F[_]](implicit F: Applicative[F]): F[(String, Strin
 We now have three the most widely used combinators of pure functional programming - functor, applicative functor and monad. If you think about it, they look very similar but they serve completely different purposes.
 
 ```scala
-map(f: A => B)    : F[A] => F[B] // <- functor.             Transforms values inside an effect
-ap (ff: F[A => B]): F[A] => F[B] // <- applicative functor. Composes two effects together
->>=(f: A => F[B]) : F[A] => F[B] // <- monad.               Transforms effect into a new effect
+map(f: A => B)   : F[A] => F[B] // <- functor.             Transforms values inside an effect
+ap (f: F[A => B]): F[A] => F[B] // <- applicative functor. Composes two effects together
+>>=(f: A => F[B]): F[A] => F[B] // <- monad.               Transforms effect into a new effect
 ```
 
 And of course since applicative is a functor we can again include it in our monad definition:
@@ -76,8 +76,8 @@ And of course since applicative is a functor we can again include it in our mona
 ```scala
 trait Monad[F[_]] extends ApplicativeFunctor[F] {
   def pure[A](a: A): F[A]
-  def >>=[A, B](fa: F[A])(f: A => F[B]): F[B]
-  override def ap[A, B](ff: F[A => B]): F[A] => F[B] = { fa => >>=(ff) { f => map(fa)(f) } }
-  override def map[A, B](f: A => B): F[A] => F[B] = { fa => >>=(fa)(f andThen pure) }
+  def >>=[A, B](f: A => F[B]): F[A] => F[B]
+  override def ap[A, B](ff: F[A => B]): F[A] => F[B] = { fa => >>=({ (f: A => B) => map(f)(fa) })(ff) }
+  override def map[A, B](f: A => B): F[A] => F[B] = >>=(f andThen pure)
 }
 ```

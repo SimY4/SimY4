@@ -56,7 +56,7 @@ And the definition on a monad we came up with in the last blog post is sufficien
 ```scala
 trait Monad[F[_]] extends Functor[F] {
   def pure[A](a: A): F[A]
-  def >>=[A, B](fa: F[A])(f: A => F[B]): F[B]
-  override def map[A, B](f: A => B): F[A] => F[B] = { fa => >>=(fa)(f andThen pure) }
+  def >>=[A, B](f: A => F[B]): F[A] => F[B]
+  override def map[A, B](f: A => B): F[A] => F[B] = >>=(f andThen pure)
 }
 ```

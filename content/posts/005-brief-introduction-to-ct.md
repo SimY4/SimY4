@@ -43,13 +43,13 @@ A category with a single object is called monoid. Now, let's try to define the K
 ```scala
 trait Shmancy[F[_]] {
   def pure[A](a: A): F[A]
-  def >>=[A, B](fa: F[A])(f: A => F[B]): F[B]
+  def >>=[A, B](f: A => F[B]): F[A] => F[B]
 }
 
 object Shmancy {
   implicit class ShmancyOp[F[_], A, B](private val fa: F[A]) extends AnyVal { 
     def >>=[B](f: A => F[B])(implicit F: Shmancy[F]): F[B] = 
-      F.>>=(fa)(f)
+      F.>>=(f)(fa)
   }
 }
 
