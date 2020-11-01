@@ -31,32 +31,32 @@ disqusShortname = "actinglikecrazy"
 # Social links
 [[params.social]]
     name = "Github"
-    icon = "fab fa-github fa-2x"
+    icon = "fa fa-github"
     weight = 1
     url = "https://github.com/SimY4/"
 [[params.social]]
     name = "StackOverflow"
-    icon = "fab fa-stack-overflow fa-2x"
+    icon = "fa fa-stack-overflow"
     weight = 2
     url = "https://stackoverflow.com/users/1439771/simy4"
 [[params.social]]
     name = "Facebook"
-    icon = "fab fa-facebook fa-2x"
+    icon = "fa fa-facebook"
     weight = 3
     url = "https://www.facebook.com/Actinglikecrazy/"
 [[params.social]]
     name = "Instragram"
-    icon = "fab fa-instagram fa-2x"
+    icon = "fa fa-instagram"
     weight = 4
     url = "https://www.instagram.com/actinglikecrazy/"
 [[params.social]]
     name = "Twitter"
-    icon = "fab fa-twitter fa-2x"
+    icon = "fa fa-twitter"
     weight = 5
     url = "https://twitter.com/actinglikecrazy/"
 [[params.social]]
     name = "LinkedIn"
-    icon = "fab fa-linkedin"
+    icon = "fa fa-linkedin"
     weight = 6
     url = "https://www.linkedin.com/in/actinglikecrazy/"
 
