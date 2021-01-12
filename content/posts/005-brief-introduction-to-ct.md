@@ -10,9 +10,9 @@ Let's briefly talk about Category theory. Category theory is a branch of set the
 ```scala
   // Parameterized with a type with two type holes in it
   //           \/
-trait Category[F[_, _]] {
-  def id[A]: F[A, A]
-  def compose[A, B, C](f: F[A, B], g: F[B, C]): F[A, C] 
+trait Category[:=>[_, _]] {
+  def id[A]: A :=> A
+  def compose[A, B, C](f: A :=> B, g: B :=> C): A :=> C 
 }
 
 object Category extends CategoryInstances0 with CategoryInstances1
