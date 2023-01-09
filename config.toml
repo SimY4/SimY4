@@ -20,12 +20,11 @@ disqusShortname = "actinglikecrazy"
     keywords = "blog,developer,personal"
     avatarurl = "images/avatar.jpg"
 
-    hidecredits = false
-    hidecopyright = false
+    since = 2019
 
-    rtl = false
+    colorScheme = "auto"
+    hidecolorschemetoggle = false
 
-    math = true
     custom_css = []
 
 # Social links
