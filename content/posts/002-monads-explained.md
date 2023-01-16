@@ -50,7 +50,10 @@ A few examples of pure functions are:
 ```scala
 def identity[A](a: A): A = a
 def min(a: Long, b: Long): Long = if (a < b) a else b
-def reverse(s: String): String = s.foldLeft("") { (acc, ch) => ch + acc }
+def reverse(s: String): String = 
+  s.foldRight(new StringBuilder(s.length)) { (ch, sb) => 
+    sb.append(ch) 
+  }.toString
 ```
 
 And what's are effectful functions then? We can call any function in the form of `A => F[B]` where `F` is a container that encodes the possibility of the function to perform some sort of effectful action 
@@ -108,7 +111,9 @@ object Fancy:
 Having these definitions in place we can rewrite our code into something like this:
 
 ```scala
-val getAccount: UserId => Option[UserAccount] = getUserById >=> getUserId >=> getUserAccount
+val getAccount: UserId => Option[UserAccount] = 
+  getUserById >=> getUserId >=> getUserAccount
+  
 getAccount(UserId(1))
 ```
 
@@ -153,7 +158,7 @@ trait CategoryInstances0:
     def id[A]: A <:< A = implicitly[A <:< A] // A is always a subtype of itself
 
     extension [A, B](f: A <:< B)
-      def compose[C](g: B <:< C): A <:< C  = g compose f
+      def compose[C](g: B <:< C): A <:< C = g compose f
 ```
 
 A category with a single object is called monoid. Now, let's try to define the Kleisli category in a generic way. 
@@ -190,7 +195,7 @@ trait Functor[F[_]]:
   type ToCat[A, B]
 
   def map[A, B](f: FromCat[A, B])
-               (using Category[FromCat], ToCat: Category[ToCat]): ToCat[F[A], F[B]]
+               (using Category[FromCat], Category[ToCat]): ToCat[F[A], F[B]]
 ```
 
 Obviously, if we can map one category to another we can also map one category to itself. In this case, we call our functor an endofunctor ('endo' means the same). 
@@ -202,8 +207,8 @@ trait EndoFunctor[F[_]] extends Functor[F]:
   override type FromCat[A, B] = Cat[A, B]
   override type ToCat[A, B] = Cat[A, B]
 
-  def mapEndo[A, B](f: Cat[A, B])
-                   (using Category[Cat]): Cat[F[A], F[B]]
+  def endo[A, B](f: Cat[A, B])
+                (using Category[Cat]): Cat[F[A], F[B]]
 
 // given a function A -> B and F[A], we can produce F[B] given that F[_] is an endofunctor
 type Function1EndoFunctor[F[_]] = EndoFunctor[F] {
