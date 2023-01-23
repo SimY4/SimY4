@@ -22,29 +22,30 @@ For example, JIT can perform dead code elimination which can evaluate arithmetic
 But some fragments they are not allowed to optimise just because they can't prove that this change will not break code's original semantics. 
 So not only making our code referentially transparent give us better code readability but also it helps the compiler to perform certain optimisations that can make your code more performant.
 
-So, why something can be non-referentially transparent? Well, basically every expression containing side-effect or mutable state breaks the property of referential transparency. 
+So, why something can be non-referentially transparent? Well, basically every expression containing a side-effect or a mutable state breaks the property of referential transparency. 
 
 ```scala
 val iterator = List(1, 2, 3).iterator
 val next = iterator.next
 next + next =!= iterator.next + iterator.next
 
-import scala.concurrent._
+import scala.concurrent.*
 import ExecutionContext.Implicits.global
-import scala.concurrent.duration._
-import scala.io.StdIn._
+import duration.*
+import scala.io.StdIn.*
 
 def readNumber = Await.result(Future { readLine("Give me a number>").toInt }, 10.seconds)
 val number = readNumber
 number + number =!= readNumber + readNumber
 ```
 
-You may wonder, how can our programs do anything useful without being able to perform side-effects? Well, let's talk about effects and side effects.
+You may wonder, how can our programs do anything useful without being able to perform side-effects? 
+To satisfy the property of referential transparency the programmer needs to keep the code free from any side-effects. 
+One of the ways to achieve this is by lifting all side-effects into an effect.
 
-## Effects and side-effects
+## Effects
 
-So, to satisfy the property of referential transparency the programmer needs to keep the code free from any side-effects. One of the ways to achieve this is by lifting all side-effects into an effect. 
-What is an effect in functional programming? Effect is a result of a function that simply isn't pure. So, what's a pure function then? A pure function is a function where the return value is determined only by its input arguments. 
+What is effect in functional programming? Effect is a result of a function that simply isn't pure. So, what's a pure function then? A pure function is a function where the return value is determined only by its input arguments. 
 A few examples of pure functions are: 
 
 ```scala
@@ -56,9 +57,9 @@ def reverse(s: String): String =
   }.toString
 ```
 
-And what's are effectful functions then? We can call any function in the form of `A => F[B]` where `F` is a container that encodes the possibility of the function to perform some sort of effectful action 
-(i.e. return abnormally by throwing an exception, produce some output, etc). Keep in mind that having an effect as a return type doesn't give us the right to break referential transparency 
-(for example `scala.concurrent.Future` look like a suitable type, it's by design not referentially transparent therefore can't be used to represent pure FP effects). 
+And what are the examples of effectful functions then? We can call any function in the form of `A => F[B]` where `F` is a container that encodes the possibility of the function to perform some sort of effectful action 
+(i.e. return abnormally by throwing an exception, produce some output, etc). Keep in mind that having an effect as a return type doesn't necessarily guarantee referential transparency 
+(for example `scala.concurrent.Future` look like a suitable effect type but it's by design not referentially transparent therefore can't be used to represent pure FP effects).
 Some examples of standard effects and effectful functions are:
 
 ```scala
@@ -72,7 +73,7 @@ def range(i: Int): List[Int] = List.range(0, i) // <- list is effect too
 ```
 
 The major problem with effectful return types is that the standard rule of functional composition can't be applied to them. 
-You can easily compose functions of type `A => B` and `B => C` to get the function `A => C` but you can't compose effectful functions `A => F[B]` and `B => F[C]`. Or can you?
+You can easily compose functions of type `A => B` and `B => C` to get the function `A => C` but you can't compose an effectful functions `A => F[B]` and `B => F[C]`. Or can you?
 
 ## Kleisli composition
 
@@ -89,8 +90,8 @@ val maybeUserAccount: Option[UserAccount] = maybeAccountId match
   case None => None
 ```
 
-There's a lot of friction here to compose these types together and it's very hard to follow what this code actually intended to do. 
-What if we can add an abstraction that could hide all this boilerplate from us? Let's try to figure something out. 
+There's a lot of friction here to compose these types together and it's very hard to follow what this code was actually intend to do. 
+What if we can add an abstraction that could hide all this boilerplate from us? Let's try to figure it out.
 We can define a trait for the composition of two effectful functions. It'll have just one method that'll look like a fancy arrow (or fish arrow, 
 depending on how you look at it):
 
@@ -120,15 +121,17 @@ getAccount(UserId(1))
 It seems that our fancy arrow gives us the missing ability to compose functions of shape `A => F[B]` in the same way as we used to compose pure functions. 
 And it turns out that this composition that we just came up with, is well known in a branch of mathematics called category theory and is called Kleisli composition 
 (named after mathematician [Heinrich Kleisli](https://en.wikipedia.org/wiki/Heinrich_Kleisli "wiki: Heinrich Kleisli")). 
-Our fancy arrow is called Kleisli arrow and as long as they are pure, and referentially transparent they form the Kleisli category. 
+Our fancy arrow is called Kleisli arrow and as long as they are pure, and referentially transparent they form a Kleisli category. 
 
 ## Brief introduction to Category theory
 
-Let's briefly talk about Category theory. Category theory is a branch of set theory where the focus was shifted on relationships between sets rather than sets themselves. 
-So, in category theory, we say that all sets are an atomic object that we can't look into and all relationships between sets are arrows that go from one atomic object to another with a few extra rules. 
-First, all objects must have at least one identity arrow `id: A => A` that starts and ends on the same object. 
+Let's briefly talk about category theory. Category theory is a branch of set theory where the focus was shifted on relationships between sets rather than sets themselves. 
+So, in category theory, we say that all sets are atomic objects that we can't look inside of and all relationships between sets are atomic arrows that go from one atomic object to another with a few extra rules. 
+First, all objects must have at least one identity arrow `id: A => A` that starts and ends on a same object. 
 Second, all arrows have to be composable, meaning that if you have two arrows `f: A => B` and `g: B => C` there should always be at least one arrow `g . f: A => C` and 
-these compositions must be associative (`(f . g) . h == f . (g . h)`). It's pretty much all we need to know at this point, having these rules we can model them in scala:
+these compositions must be associative (`(f . g) . h == f . (g . h)`). 
+
+It's pretty much all we need to know at this point. Having these rules we can model them in Scala as:
 
 ```scala
 trait Category[:=>[_, _]]:
@@ -140,7 +143,7 @@ trait Category[:=>[_, _]]:
 object Category extends CategoryInstances0 with CategoryInstances1
 ```
 
-Given this definition of a category, we can implement a few the most frequently used examples of categories:
+Given this definition of a category, we can implement a few most frequently used examples of categories:
 
 ```scala
 trait CategoryInstances0:
@@ -161,8 +164,7 @@ trait CategoryInstances0:
       def compose[C](g: B <:< C): A <:< C = g compose f
 ```
 
-A category with a single object is called monoid. Now, let's try to define the Kleisli category in a generic way. 
-To do this we'll need one extra helper trait with some standard scala plumbing to make it into a nice syntax.
+Now, let's try to define the Kleisli category in a generic way. To do this we'll need one extra helper trait:
 
 ```scala
 trait Shmancy[F[_]]:
@@ -180,12 +182,12 @@ trait CategoryInstances1:
 ```
 
 Here we are. So, to make things compose in Kleisly category we need only two things, a function that can lift a pure value into an effect `F[_]` 
-and a binding function that can apply function `A => F[B]` to `F[A]`. This definition is called a monad.
+and a binding function that can apply function `A => F[B]` to `F[A]`. This definition is called Monad.
 
 ## Mapping between categories
 
 So, once we defined a category and played with them a little bit we start wondering if categories can themselves be mapped somehow. 
-And some of them actually can. Today we're going to talk about functors which is a mapping between two categories: `Category[A] => Category[B]`. 
+And some of them actually can. Today we're going to talk about functors which are mappings between categories: `Category[A] => Category[B]`. 
 In order to map one category to another, we need to map all the objects and arrows of the original category. 
 Using the model of category from the previous post we can define a functor like so:
 
@@ -198,8 +200,8 @@ trait Functor[F[_]]:
                (using Category[FromCat], Category[ToCat]): ToCat[F[A], F[B]]
 ```
 
-Obviously, if we can map one category to another we can also map one category to itself. In this case, we call our functor an endofunctor ('endo' means the same). 
-Most of the time when we use functors in Scala or Haskell we actually deal with endofunctors.
+If we can map one category to another we can also map one category to itself. In this case, we call our functor an endofunctor ('endo' means the same). 
+Most of the time when we use functors in Scala or Haskell we are actually dealing with endofunctors.
 
 ```scala
 trait EndoFunctor[F[_]] extends Functor[F]:
@@ -213,11 +215,15 @@ trait EndoFunctor[F[_]] extends Functor[F]:
 // given a function A -> B and F[A], we can produce F[B] given that F[_] is an endofunctor
 type Function1EndoFunctor[F[_]] = EndoFunctor[F] {
   type Cat[A, B] = A => B
+
+  // def endo(f: A => B): F[A] => F[B]
 }
 
 // if A <:< B then F[A] <:< F[B] given that F[_] is an endofunctor
 type TypeHierarchyEndoFunctor[F[_]] = EndoFunctor[F] {
   type Cat[A, B] = A <:< B
+
+  // def endo(f: A <:< B): F[A] <:< F[B]
 }
 ```
 
