@@ -23,7 +23,7 @@ But with one downside of whenever you have to interop with Java the ability to p
 
 Ok, so what about the second problem?
 
-{{< notice tip >}} You can enablejavac to store method argument names by passing the -parameters compiler flag. Scala can honour the additional info and will let you use named arguments. Kotlin unfortunately ignores this metadata and won’t let you do it either way. {{< /notice >}}
+{{<notice tip>}} You can enablejavac to store method argument names by passing the -parameters compiler flag. Scala can honour the additional info and will let you use named arguments. Kotlin unfortunately ignores this metadata and won’t let you do it either way. {{</notice>}}
 
 ## Refined types
 

@@ -239,7 +239,7 @@ trait Functor[F[_]]:
   extension [A, B](f: A => B) def map(fa: F[A]): F[B]
 ```
 
-And the definition on a monad we came up with in the last blog post is sufficient to derive a functor for it:
+And the definition of a monad we came up with is sufficient to derive a functor for it:
 
 ```scala
 trait Monad[F[_]] extends Functor[F]:
