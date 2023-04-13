@@ -9,7 +9,7 @@ It is quite common and widely spread practice for Scala projects to cross-compil
 
 For one of my Java projects, I decided to create a Scala bridge. Historically, the entire project is built using [Gradle build tool](https://gradle.org/) and it was decided to add the bridge to the same project as a separate submodule. Gradle provides basic Scala compilation support. It can build an artifact and bundle it with documentation and sources for any specific version of Scala compiler - everything you need, except cross-compilation. There is an open [ticket](https://github.com/gradle/gradle/issues/3530) and a couple of plugins ([1](https://github.com/ADTRAN/gradle-scala-multiversion-plugin), [2](https://github.com/prokod/gradle-crossbuild-scala)) focused on adding this support but current state of things is nowhere near to ease of use and convenience of SBT. So I decided to check for myself how hard it is to configure Gradle for Scala cross-compilation without special plugins or Gradle support.
 
-## Desired outcome
+## Wonder
 
 What I want is the same set of sources to be compiled for multiple versions of the Scala compiler: 2.11, 2.12 and 2.13. And since Scala 2.13 has a bunch of backward-incompatible changes to built-in collections, I would like to be able to add additional version-specific source sets for compiler-specific code. Again, it's a trivial task in SBT, let's see what we can do in Gradle:
 
@@ -123,3 +123,5 @@ Here you can also extract individual common configuration pieces in external con
 ## Outcome
 
 The problem was solved, Gradle's flexibility was enough to quite elegantly express a very non-trivial setup, and Scala cross-building was proven to be possible not only using SBT, and if for one reason or another you use Gradle to build a Scala project, cross-compilation as an opportunity for you is also available.
+
+[Project GitHub link](https://github.com/SimY4/xpath-to-xml/tree/2.x/xpath-to-xml-scala) if you want to reproduce this explore yourself.
