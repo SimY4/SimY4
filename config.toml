@@ -39,20 +39,21 @@ disqusShortname = "actinglikecrazy"
     weight = 2
     url = "https://stackoverflow.com/users/1439771/simy4"
 [[params.social]]
-    name = "Facebook"
-    icon = "fa fa-facebook"
-    weight = 3
-    url = "https://www.facebook.com/Actinglikecrazy/"
-[[params.social]]
     name = "Instragram"
     icon = "fa fa-instagram"
-    weight = 4
+    weight = 3
     url = "https://www.instagram.com/actinglikecrazy/"
 [[params.social]]
     name = "Twitter"
     icon = "fa fa-twitter"
-    weight = 5
+    weight = 4
     url = "https://twitter.com/actinglikecrazy/"
+[[params.social]]
+    name = "Mastodon"
+    icon = "fa fa-mastodon"
+    weight = 5
+    url = "https://aus.social/@actinglikecrazy/"
+    rel = "me"
 [[params.social]]
     name = "LinkedIn"
     icon = "fa fa-linkedin"
