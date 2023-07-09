@@ -52,7 +52,7 @@ disqusShortname = "actinglikecrazy"
     name = "Mastodon"
     icon = "fa fa-mastodon"
     weight = 5
-    url = "https://aus.social/@actinglikecrazy/"
+    url = "https://aus.social/@actinglikecrazy"
     rel = "me"
 [[params.social]]
     name = "LinkedIn"
