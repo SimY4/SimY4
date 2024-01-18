@@ -25,7 +25,11 @@ disqusShortname = "actinglikecrazy"
     colorScheme = "auto"
     hidecolorschemetoggle = false
 
-    custom_css = []
+    customCSS = []
+
+[taxonomies]
+    category = "categories"
+    tag = "tags"
 
 # Social links
 [[params.social]]
@@ -57,10 +61,14 @@ disqusShortname = "actinglikecrazy"
 
 # Menu links
 [[menu.main]]
-    name = "Blog"
+    name = "About"
     weight = 1
-    url = "/posts/"
+    url = "about/"
+[[menu.main]]
+    name = "Blog"
+    weight = 2
+    url = "posts/"
 [[menu.main]]
     name = "RSS"
-    weight = 2
+    weight = 3
     url = "/index.xml"
