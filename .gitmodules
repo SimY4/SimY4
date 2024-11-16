@@ -3,5 +3,5 @@
 	url = https://github.com/luizdepra/hugo-coder.git
 [submodule "public"]
 	path = public
-	url = https://github.com/SimY4/SimY4.github.io.git
+	url = git@github.com:SimY4/SimY4.github.io.git
 	branch = master

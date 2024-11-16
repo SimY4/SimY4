@@ -34,29 +34,34 @@ disqusShortname = "actinglikecrazy"
 # Social links
 [[params.social]]
     name = "Github"
-    icon = "fa fa-github"
+    icon = "fa-brands fa-github fa-2x"
     weight = 1
     url = "https://github.com/SimY4/"
 [[params.social]]
     name = "StackOverflow"
-    icon = "fa fa-stack-overflow"
+    icon = "fa-brands fa-stack-overflow fa-2x fa-2x"
     weight = 2
-    url = "https://stackoverflow.com/users/1439771/simy4"
+    url = "https://stackoverflow.com/users/1439771/simy4/"
 [[params.social]]
     name = "Instragram"
-    icon = "fa fa-instagram"
+    icon = "fa-brands fa-instagram fa-2x"
     weight = 3
     url = "https://www.instagram.com/actinglikecrazy/"
 [[params.social]]
     name = "Mastodon"
-    icon = "fa fa-mastodon"
+    icon = "fa-brands fa-mastodon fa-2x"
     weight = 4
-    url = "https://aus.social/@actinglikecrazy"
+    url = "https://aus.social/@actinglikecrazy/"
     rel = "me"
 [[params.social]]
-    name = "LinkedIn"
-    icon = "fa fa-linkedin"
+    name = "Bluesky"
+    icon = "fa-brands fa-bluesky fa-2x"
     weight = 5
+    url = "https://bsky.app/profile/actinglikecrazy.bsky.social/"
+[[params.social]]
+    name = "LinkedIn"
+    icon = "fa-brands fa-linkedin fa-2x"
+    weight = 6
     url = "https://www.linkedin.com/in/actinglikecrazy/"
 
 # Menu links
