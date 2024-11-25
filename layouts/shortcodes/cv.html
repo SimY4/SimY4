@@ -1,2 +1,4 @@
-<p style="margin:0;padding:0;border:0;position:relative;left:33%;margin-bottom: 0.7em;margin-right:0;width:65%;">
-  {{ .Inner | markdownify }}</p>
+<div style="display: flex">
+  <h2 style="flex: 20%; padding-right: 10px; font-size: 1.1em; text-align: right">{{ (.Get 0) | markdownify }}</h2>
+  <div style="flex: 80%; text-align: left; margin-top: 1.2em">{{ .Inner | markdownify }}</div>
+</div>
