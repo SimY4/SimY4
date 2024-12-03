@@ -59,7 +59,7 @@ pagerSize = 20
     name = "Bluesky"
     icon = "fa-brands fa-bluesky fa-2x"
     weight = 5
-    url = "https://bsky.app/profile/actinglikecrazy.bsky.social/"
+    url = "https://bsky.app/profile/simy4.github.io/"
 [[params.social]]
     name = "LinkedIn"
     icon = "fa-brands fa-linkedin fa-2x"
