@@ -23,7 +23,7 @@ But with one downside of whenever you have to interop with Java the ability to p
 
 Ok, so what about the second problem?
 
-{{<notice tip>}} You can enablejavac to store method argument names by passing the -parameters compiler flag. Scala can honour the additional info and will let you use named arguments. Kotlin unfortunately ignores this metadata and won’t let you do it either way. {{</notice>}}
+{{<notice tip>}} You can enable javac to store method argument names by passing the -parameters compiler flag. Scala can honour the additional info and will let you use named arguments. Kotlin unfortunately ignores this metadata and won’t let you do it either way. {{</notice>}}
 
 ## Refined types
 
@@ -118,4 +118,4 @@ You’ll be surprised how many standard java APIs are willing to work on `CharSe
 
 ## In conclusion
 
-Some of these proposed steps were retrofitted into the principles on which principled-ari-java library in one of the recent library releases. Totally worth the effort. If you were delaying introducing refined types in your codebase for one of the reasons above, I hope I was able to give you more reasons to reconsider. If there are still obstacles in adopting refines in your codebase that I didn’t think of, please let me know, I’ll think of something to make to work for your case also.
+These proposed steps I apply regularly in developing my own libraries. Totally worth the effort. If you were delaying introducing refined types in your codebase for one of the reasons above, I hope I was able to give you more reasons to reconsider. If there are still obstacles in adopting refines in your codebase that I didn’t think of, please let me know, I’ll think of something to make to work for your case also.
