@@ -52,14 +52,14 @@ visibility. This is stronger than naming conventions. You cannot access these cl
 Reflection aside, the compiler enforces the rule.
 
 The downside is architectural. Large packages become crowded, internal details sit next to APIs, and refactoring gets
-harder over time. It also assumes that “same package” is a meaningful trust boundary, blocks casual misuse and keeps
+harder over time. But, it assumes that “same package” is a meaningful trust boundary, blocks casual misuse and keeps
 most consumers honest.
 
 ### Visibility and constructors lockdown
 
 This is the hard mode. Here, module authors go all in on visibility modifiers. Classes are final. Constructors are
 `private`. Factory methods are tightly controlled. Subclassing is impossible. Instantiation paths are intentionally
-obscure. Even if you can see the class, you cannot use it in any normal way. This style is often found in
+obscure. Even if you can *see* the class, you cannot use it in any normal way. This style is often found in
 performance-critical code, low-level frameworks, and libraries that have been burned before. It actively resists
 extension, mocking, testing, and reuse. It is defensive programming taken to its logical extreme.
 
