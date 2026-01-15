@@ -20,7 +20,7 @@ efficiently, already tested. They sit there like a locked door with light shinin
 
 You want to use them. You are not supposed to.
 
-{{<figure src="/images/posts/rule-of-cool.png" alt="Rule of Cool" width="600">}}
+{{<figure src="/images/posts/rule-of-cool.png" alt="Rule of Cool" width="400">}}
 
 Before reflection, before bridges, before Public Morozov even enters the room, module authors usually do a lot of work 
 to say one thing very clearly: *this is not for you*. I can list three approaches that have become especially common in 
