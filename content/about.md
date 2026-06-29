@@ -1,67 +1,43 @@
 +++
-title = "Hi there 👋"
-description = "Father of 2, FP enthusiast, Software Engineer, Geek"
+title = "ALEX SIMKIN"
+description = "Father of 2 | Software Engineer | FP enthusiast | Geek"
 date = "2024-01-18"
 aliases = ["cv", "contact"]
 +++
-Father of 2, FP enthusiast, Software Engineer, Geek
 
-{{<cv "Currently">}}
+Expert in the JVM ecosystem (Java, Kotlin, Scala) with a deep focus on functional programming and architectural purity.
 
-__Principal Software Engineer__, [Atlassian](https://www.atlassian.com/)
+{{<cv>}}
+## Preferences
 
-Playing solution architect and tech lead roles for the new cloud platform development from inception to production roll out.
+JVM, Rust, Go, Backend, Mentorship, Tech Lead
 
----
-{{</cv>}}
+## Professional experience
+__Atlassian — Aug 2022 - Present__\
+__team 1:__ tech lead of commerce platform, payment processing system\
+__team 2:__ tech lead of new tenant provisioning system\
+__team 3:__ tech lead of cloud cost efficiency initiatives\
+__Stack:__ AWS DynamoDB, SWF, SQS, Java, Kotlin, PostgreSQL, React, Spring Framework, TypeScript\
+__Key achievements:__\
+‣ Acted as tech lead, bridging the gap between complex business requirements and robust technical execution.\
+‣ Championed a “platform mindset” across teams, mentoring engineers and refining product requirements to eliminate technical debt.
 
-{{<cv "Specialized in">}}
+__Atlassian — Aug 2016 - Aug 2022__\
+Software engineer for identity and access management platform\
+__Stack:__ AWS DynamoDB, SQS, Scala, Java, JavaScript, Kotlin, React, Spring Framework, TypeScript\
+__Key achievements:__\
+‣ Modernised the tech stack, proactively preventing tech debt creep\
+‣ Helped effectively adopt and implement GDPR in Atlassian\
+‣ Delivered new Identity Management Platform and Access Product
 
-Design and architecture using __AWS__ services
+__Luxoft — Sep 2014 - Aug 2016__\
+Software engineer for Deutsche Bank trade processing project\
+__Stack:__ Java, Spring Framework, Oracle DB\
+__Key achievements:__\
+‣ Participate in development of a high load trade processing service
 
-Proficient with __Languages__ and __Stacks__: 
-
-Java and Kotlin: __18 years__ Spring Framework
-Javascript and Typescript: __18 years__ AngularJS, React
-Scala: __10 years__ typelevel and ZIO stacks 
-Clojure: 1 year, 
-Rust 1 year
-
----
-{{</cv>}}
-
-{{<cv "Occupation">}}
-
-`Aug 2016 - Sep 2022`
-__Senior Software Engineer__, [Atlassian](https://www.atlassian.com/)
-
-Participate in development of cloud first platform services written in Java, Scala and Kotlin hosted in AWS.
-
-`Sep 2014 - Aug 2016`
-__Senior Software Engineer__, [Luxoft](https://www.luxoft.com/)
-
-Participate in development of a high load trade processing service written in Java.
-
-`Dec 2012 - Sep 2014`
-__Senior Software Engineer__, [T-Systems CIS](https://www.t-systems.com/)
-
-Participate in [De-Mail project](https://de.wikipedia.org/wiki/De-Mail) as Java developer. Gained experience working with Unix systems and SMTP protocol.
-
----
-{{</cv>}}
-
-{{<cv "Education">}}
-
-`2003-2009`
-__Moscow Aviation Institute (National Research University)__, Engineer's degree, Methematics and Computer Science
-
----
-{{</cv>}}
-
-{{<cv "Certifications">}}
-
-`2019`
-__Functional Programming in Scala__, Coursera
-
----
+__Others__\
+__T-Systems CIS — Dec 2012 - Sep 2014__\
+__Technology — Jan 2012 - Dec 2012__\
+__Core Partners — Jul 2009 - Jan 2012__
 {{</cv>}}
