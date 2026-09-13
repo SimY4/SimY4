@@ -59,7 +59,7 @@ inversion of control.
 
 ## Declarative Era: When XML Took the Stage
 
-{{<details "Spring don't even..." >}}
+{{<details summary="Spring don't even..." >}}
 Spring did not invent the idea of describing components in XML, because enterprise Java was already full of it.
 
 Before Spring, J2EE and EJB used XML heavily, but those XML files were not only describing wiring, they were enforcing
@@ -109,7 +109,7 @@ var service = context.getBean(OrderService.class);
 Object wiring became declarative. But at the same time XML grew dense, IDE support lagged behind, refactoring was
 fragile. But it worked and it was extremely popular.
 
-{{<details "XML was not the only option available" >}}
+{{<details summary="XML was not the only option available" >}}
 There were other attempts at declarative DSLs. Still supported but rarely mentioned: Groovy based bean definitions
 
 ```groovy

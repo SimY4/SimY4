@@ -21,7 +21,7 @@ The first difficulty to face is that the compiler version is calculated from the
 
 In the declaration of submodules in the Gradle project, you can specify the directory where the root of the submodule and the name of the file responsible for its configuration will be located. Let's specify the same directory for multiple imports and create multiple copies of the build script for each compiler version:
 
-{{<details "settings.gradle" >}}
+{{<details summary="settings.gradle" >}}
 ```groovy
 rootProject.name = 'test'
 include 'java-library'
@@ -48,7 +48,7 @@ project(':scala-facade_2.13').with {
 
 Not bad, but occasionally we can get strange compilation errors due to the fact that all three build scripts use the same build directory. We can fix this by setting them ourselves for each of the builds:
 
-{{<details "build-2.12.gradle" >}}
+{{<details summary="build-2.12.gradle" >}}
 ```groovy
 plugins {
   id 'scala'
@@ -68,7 +68,7 @@ Now, it's shaping up nicely. The only problem is that such a build will drive yo
 
 What about additional source sets? Again, with separate files, this turned out to be quite simple, create a new directory and configure it as a source set:
 
-{{<details "build-2.12.gradle" >}}
+{{<details summary="build-2.12.gradle" >}}
 ```groovy
 sourceSets {
   compat {
@@ -91,7 +91,7 @@ sourceSets {
 ```
 {{</details>}}
 
-{{<details "build-2.13.gradle" >}}
+{{<details summary="build-2.13.gradle" >}}
 ```groovy
 sourceSets {
   compat {
