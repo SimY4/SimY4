@@ -1,41 +1,38 @@
 +++
 title = "ALEX SIMKIN"
 description = "Father of 2 | Software Engineer | FP enthusiast | Geek"
-date = "2024-01-18"
+date = "2026-09-13"
 aliases = ["cv", "contact"]
 +++
 
-Expert in the JVM ecosystem (Java, Kotlin, Scala) with a deep focus on functional programming and architectural purity.
+Strategic technical leader with 18+ years of experience building mission-critical cloud platforms and distributed systems. Deep JVM expertise, with a strong focus on architectural integrity and pragmatic engineering. Experienced leading complex initiatives from conception through delivery while remaining deeply hands-on and balancing technical excellence with business outcomes.
+
+## Target roles
+
+Principal Engineer · Tech Lead · Backend / Platform Engineering
 
 {{<cv>}}
-## Preferences
-
-JVM, Rust, Go, Backend, Mentorship, Tech Lead
-
 ## Professional experience
-__Atlassian — Aug 2022 - Present__\
-__team 1:__ tech lead of commerce platform, payment processing system\
-__team 2:__ tech lead of new tenant provisioning system\
-__team 3:__ tech lead of cloud cost efficiency initiatives\
-__Stack:__ AWS DynamoDB, SWF, SQS, Java, Kotlin, PostgreSQL, React, Spring Framework, TypeScript\
-__Key achievements:__\
-‣ Acted as tech lead, bridging the gap between complex business requirements and robust technical execution.\
-‣ Championed a “platform mindset” across teams, mentoring engineers and refining product requirements to eliminate technical debt.
-
-__Atlassian — Aug 2016 - Aug 2022__\
-Software engineer for identity and access management platform\
-__Stack:__ AWS DynamoDB, SQS, Scala, Java, JavaScript, Kotlin, React, Spring Framework, TypeScript\
-__Key achievements:__\
-‣ Modernised the tech stack, proactively preventing tech debt creep\
-‣ Helped effectively adopt and implement GDPR in Atlassian\
-‣ Delivered new Identity Management Platform and Access Product
-
-__Luxoft — Sep 2014 - Aug 2016__\
+__Atlassian —  Aug 2016 - Present__\
+Software engineer and technical leader working across Identity, Commerce, tenant provisioning and cloud cost efficiency initiatives.\
+__Identity__\
+‣ Delivered a new User Management Platform and Access Product.\
+‣ Modernized the tech stack, proactively preventing tech debt creep.\
+‣ Implemented technical changes required to support GDPR compliance.\
+__Commerce__\
+‣ Led the technical delivery of an Accounts Receivable platform integrating Stripe as payment gateway, owning key technical decisions across the payment processing lifecycle.\
+‣ Championed a platform-oriented approach across teams, improving architectural consistency and reducing tech debt.\
+‣ Mentored engineers in their technical and career development.\
+__Provisioning & FinOps__\
+‣ Designed and implemented components of a new self-serve product provisioning orchestration framework plus test harness.\
+‣ Led cloud cost efficiency initiative, identifying and addressing resource optimisations that delivered more than $1.6M in savings.\
+__Stack:__ AWS, Java, Kotlin, Scala, Go, PostgreSQL, React, TypeScript\
+\
+__Luxoft —  Sep 2014 - Aug 2016__\
 Software engineer for Deutsche Bank trade processing project\
+‣ Developed a high-load trade processing service supporting mission-critical financial workflows.\
 __Stack:__ Java, Spring Framework, Oracle DB\
-__Key achievements:__\
-‣ Participate in development of a high load trade processing service
-
+\
 __Others__\
 __T-Systems CIS — Dec 2012 - Sep 2014__\
 __Technology — Jan 2012 - Dec 2012__\
