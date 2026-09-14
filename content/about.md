@@ -34,7 +34,7 @@ Software engineer for Deutsche Bank trade processing project\
 __Stack:__ Java, Spring Framework, Oracle DB\
 \
 __Others__\
-__T-Systems CIS — Dec 2012 - Sep 2014__\
-__Technology — Jan 2012 - Dec 2012__\
-__Core Partners — Jul 2009 - Jan 2012__
+__T-Systems CIS —  Dec 2012 - Sep 2014__\
+__Technology Systems —  Jan 2012 - Dec 2012__\
+__Core Partners —  Jul 2009 - Jan 2012__
 {{</cv>}}
