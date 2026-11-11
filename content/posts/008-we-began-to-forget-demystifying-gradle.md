@@ -1,6 +1,6 @@
 +++
 title = "We Began to Forget: Demystifying Gradle"
-date = "2026-01-15"
+date = "2026-10-11"
 tags = ["java", "we-began-to-forget"]
 categories = ["dev-blog"]
 +++
