@@ -4,21 +4,39 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     if: github.repository == 'SimY4/SimY4'
 
     steps:
-      - name: Checkout repository and submodules
+      - name: Checkout repository
         uses: actions/checkout@v6
-        with:
-          submodules: recursive
+      # Only the theme is needed for the build. The `public` submodule is left
+      # out so Hugo renders into a clean directory and no stale pages are published.
+      - name: Checkout theme
+        run: git submodule update --init --recursive --depth 1 themes/hugo-coder
       - name: Setup hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: "0.158.0"
       - name: ⚙️ Build
         run: hugo --minify
+      - name: 🚀 Publish to SimY4.github.io
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: SimY4/SimY4.github.io
+          publish_branch: master
+          publish_dir: ./public
+          full_commit_message: ${{ github.event.head_commit.message || format('Publish {0}', github.sha) }}
