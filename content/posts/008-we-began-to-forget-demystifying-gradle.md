@@ -184,7 +184,7 @@ and you didn't have to list a single one of them.
 
 Before running a task, Gradle fingerprints every arrow that goes into the Action. For Properties, it hashes their values.
 For Input FileCollections, it hashes the contents of the files along with their normalised paths. It still never looks
-inside the Action, but it does remember which Action it was. After the Action finishes, Gradle takes a snapshot of the
+inside the Action, but it does remember _which_ Action it was. After the Action finishes, Gradle takes a snapshot of the
 Outputs and stores the snapshot and the fingerprints together in the execution history, under the project's `.gradle` directory.
 
 On the next build, Gradle compares. If every Input fingerprint matches, and the Outputs still look exactly as they did
@@ -203,11 +203,11 @@ Everything below comes from one idea: the checker can only see what you put in t
   fingerprint without changing anything that matters.
 - **One Output, one owner.** If another task changes your Outputs after you've finished, the snapshot Gradle took no
   longer matches, and your task runs again on every single build. Gradle also refuses to cache a task whose Outputs
-  overlap with another task's, because it can no longer tell whose files are whose. Which brings me to my favourite bug.
+  overlap with another task's, because it can no longer tell whose files are whose.
  
 {{<notice tip>}} When it still doesn’t work: run your build with `./gradlew build --info -Dorg.gradle.caching.debug=true` to learn why
 
-And when you just need the Action to run regardless of up to date checker state, `--rerun` forces a single task and `--rerun-tasks` forces all of them.{{</notice>}}
+And when you just need the Action to run regardless of up-to-date checker state, `--rerun` forces a single task and `--rerun-tasks` forces all of them.{{</notice>}}
 
 ## Fin
 
